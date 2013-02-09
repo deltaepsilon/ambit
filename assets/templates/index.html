@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="Ambit">
+<head>
+    <meta charset="utf-8">
+    <title>Ambit</title>
+    <link rel="stylesheet" href="assets/styles/style.css">
+</head>
+<body>
+
+    <div ng-view></div>
+
+
+    <script type='text/javascript' src="/assets/scripts/js/lib/angular.js"></script>
+    <script type='text/javascript' src="/assets/scripts/js/app.js"></script>
+    <script type='text/javascript' src="/assets/scripts/js/filters.js"></script>
+    <script type='text/javascript' src="/assets/scripts/js/services.js"></script>
+    <script type='text/javascript' src="/assets/scripts/js/directives.js"></script>
+    <script type='text/javascript' src="/assets/scripts/js/lib/require.js"></script>
+    <script>
+        require.config({
+            baseUrl: '/assets/scripts/js'
+        });
+    </script>
+</body>
+</html>

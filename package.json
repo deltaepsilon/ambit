@@ -1,0 +1,53 @@
+{
+	"name": "ambit",
+	"preferGlobal": true,
+	"version": "0.0.1",
+	"author": "Christopher Esplin <chris@christopheresplin.com>",
+	"description": "A test bed for now... hopefully these modules will find their way into a finished product.",
+	"contributors": [
+		{
+			"name": "Christopher Esplin",
+			"email": "chris@christopheresplin.com"
+		}
+	],
+	"bin": {
+		"ambit": "./bin/ambit"
+	},
+	"scripts": {
+		"start": "coffee ./lib/ambit.coffee",
+		"dev": "nodemon ./lib/ambit.coffee 3000",
+		"test": "vows --spec --isolate",
+		"predeploy": "echo This will be run before deploying the app",
+		"postdeploy": "echo This will be run after deploying the app"
+	},
+	"main": "./lib/ambit",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/deltaepsilon/ambit.git"
+	},
+	"keywords": [
+		"flatiron"
+	],
+	"dependencies" : {
+		"flatiron" :  "*",
+		"union" : "*",
+		"plates" : "*",
+		"director" : "*",
+		"st" :  "*",
+		"connect" : "*",
+		"grunt" : "*",
+		"grunt-contrib-less" : "*",
+		"grunt-coffee" : "*",
+		"nodemon" : "*",
+		"coffee-script" : "*"
+	},
+	"devDependencies": {
+		"vows"    :  "0.5.x",
+		"request" :  "2.1.x",
+		"testacular" : "*"
+	},
+	"license": "MIT",
+	"engines": {
+		"node": ">=0.8.14"
+	}
+}
