@@ -1,0 +1,6 @@
+{
+	"user": {
+		"base": "/api/user",
+		"create": "/create"
+	}
+}

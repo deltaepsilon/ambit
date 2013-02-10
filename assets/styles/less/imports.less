@@ -1,0 +1,26 @@
+@background: url('../img/background.png');
+
+@white: #FFFFFF;
+@black: #000000;
+@darkGray: #222222;
+@darkGrayTransparent: hsla(0, 0%, 13%, .80);
+
+@fontFamilyNormal: Rockwell, "Courier Bold", Courier, Georgia, Times, "Times New Roman", serif;
+@fontFamilyBold: "Rockwell Extra Bold", "Rockwell Bold", monospace;
+
+.absLayout(@top: 0, @right: 0, @bottom: 0, @left: 0) {
+  position: absolute;
+  top: @top;
+  right: @right;
+  bottom: @bottom;
+  left: @left;
+}
+
+.fixedLayout(@top: 0, @right: 0, @bottom: 0, @left: 0) {
+  position: fixed;
+  top: @top;
+  right: @right;
+  bottom: @bottom;
+  left: @left;
+}
+

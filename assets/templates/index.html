@@ -6,6 +6,29 @@
     <link rel="stylesheet" href="assets/styles/style.css">
 </head>
 <body>
+    <nav id="top-nav">
+        <ul id="top-nav-list" class="horizontal-list">
+            <li>
+                <a href="#/login" class="undecorated">Login</a>
+            </li>
+            <li>
+                <a href="#/register" class="undecorated">Register</a>
+            </li>
+            <li>
+                <a href="#/how-it-works" class="undecorated">How It Works</a>
+            </li>
+            <li>
+                <a href="#/pricing" class="undecorated">Pricing</a>
+            </li>
+            <li>
+                <a href="#/about" class="undecorated">About</a>
+            </li>
+            <li>
+                <a href="#/contact" class="undecorated">Contact</a>
+            </li>
+            <li class="stretch-list-item"></li>
+        </ul>
+    </nav>
 
     <div ng-view></div>
 
@@ -18,7 +41,7 @@
     <script type='text/javascript' src="/assets/scripts/js/lib/require.js"></script>
     <script>
         require.config({
-            baseUrl: '/assets/scripts/js'
+            baseUrl: '/assets/scripts/js/'
         });
     </script>
 </body>

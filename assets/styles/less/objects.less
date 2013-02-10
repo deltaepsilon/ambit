@@ -1,0 +1,68 @@
+@import "imports";
+
+.centered {
+  display: inline-block;
+}
+
+.horizontal-list {
+  list-style-type: none;
+  overflow: hidden;
+  text-align: justify;
+
+  li {
+    display: inline-block;
+  }
+
+  .stretch-list-item {
+    display: inline-block;
+    width: 100%;
+    *display: inline;
+    zoom: 1;
+  }
+}
+
+.undecorated {
+  text-decoration: none;
+}
+
+.form-list {
+  list-style-type: none;
+  text-align: justify;
+
+  li {
+    overflow: hidden;
+  }
+
+  label {
+    display: inline-block;
+    float: left;
+    margin-right: 1em;
+  }
+
+  input {
+    display: inline-block;
+    float: right;
+  }
+}
+
+.buttons-right {
+  text-align: right;
+
+  .inline-button {
+    display: inline-block;
+  }
+}
+
+.bold-button {
+  display: inline-block;
+  background: @darkGrayTransparent;
+  border: none;
+  color: white;
+  padding: 0.7em;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-family: @fontFamilyNormal;
+  font-size: .7em;
+  cursor: pointer;
+}
+

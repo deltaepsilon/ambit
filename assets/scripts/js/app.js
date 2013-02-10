@@ -10,12 +10,24 @@ angular.module('Ambit', ['Ambit.filters', 'Ambit.services', 'Ambit.directives'])
     $routeProvider.when('/login', {
       templateUrl: 'assets/templates/partials/login.html'
     });
+    $routeProvider.when('/register', {
+      templateUrl: 'assets/templates/partials/register.html'
+    });
     return $routeProvider.otherwise({
       redirectTo: '/'
     });
   }
 ]);
 
-angular.module('Ambit').controller('loginController', function() {
-  return console.log('inside loginController');
+angular.module('Ambit').controller('userController', function($scope) {
+  $scope.logIn = function(user) {
+    return console.log('logging in user', $scope.user);
+  };
+  return $scope.register = function() {
+    return require(['shared/userModel'], function(userModel) {
+      var user;
+      user = userModel.createUser($scope.user);
+      return console.log('registering user', user);
+    });
+  };
 });

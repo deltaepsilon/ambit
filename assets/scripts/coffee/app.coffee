@@ -10,9 +10,20 @@ angular.module('Ambit', [
       templateUrl: 'assets/templates/partials/user.html'
     $routeProvider.when '/login',
       templateUrl: 'assets/templates/partials/login.html'
+    $routeProvider.when '/register',
+      templateUrl: 'assets/templates/partials/register.html'
     $routeProvider.otherwise
       redirectTo: '/'
 ])
 
-angular.module('Ambit').controller 'loginController', ->
-  console.log 'inside loginController'
+angular.module('Ambit').controller 'userController', ($scope) ->
+  $scope.logIn = (user) ->
+    console.log 'logging in user', $scope.user
+
+  $scope.register = () ->
+    require(['shared/userModel'], (userModel) ->
+      user = userModel.createUser $scope.user
+
+      console.log 'registering user', user
+    );
+

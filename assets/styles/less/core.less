@@ -1,0 +1,50 @@
+@import "imports";
+
+html {
+  background-image: @background;
+}
+
+body {
+  .fixedLayout();
+  text-align: center;
+  margin: 0;
+  background-color: @darkGrayTransparent;
+  color: @white;
+  font-family: @fontFamilyNormal;
+  letter-spacing: 2px;
+}
+
+a, a:visited {
+  color: @white;
+}
+
+h1 {
+  font-family: @fontFamilyBold;
+  font-size: 20;
+  text-transform: uppercase;
+}
+
+h2 {
+  text-transform: uppercase;
+}
+
+h3 {
+  text-transform: uppercase;
+}
+
+#top-nav-list {
+  margin: 2em;
+  text-transform: uppercase;
+}
+
+.list-heading {
+  text-align: left;
+}
+
+.clean-list {
+  list-style-type: none;
+}
+
+.left-list {
+  text-align: left;
+}

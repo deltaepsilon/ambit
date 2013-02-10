@@ -9,6 +9,7 @@ module.exports = function(grunt) {
                     paths: ['assets/styles/less']
                 },
                 files: {
+                    'assets/styles/css/objects.css': 'assets/styles/less/objects.less',
                     'assets/styles/css/core.css': 'assets/styles/less/core.less'
                 }
             }
@@ -29,6 +30,10 @@ module.exports = function(grunt) {
             directives: {
                 src: ['assets/scripts/coffee/directives/*.coffee'],
                 dest: 'assets/scripts/js/directives'
+            },
+            models: {
+                src: ['assets/scripts/coffee/shared/*.coffee'],
+                dest: 'assets/scripts/js/shared'
             }
         },
         concat: {

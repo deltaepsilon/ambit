@@ -34,12 +34,12 @@
 		"plates" : "*",
 		"director" : "*",
 		"st" :  "*",
-		"connect" : "*",
 		"grunt" : "*",
 		"grunt-contrib-less" : "*",
 		"grunt-coffee" : "*",
 		"nodemon" : "*",
-		"coffee-script" : "*"
+		"coffee-script" : "*",
+		"requirejs" : "*"
 	},
 	"devDependencies": {
 		"vows"    :  "0.5.x",
