@@ -1,0 +1,31 @@
+{
+	"mongodb": {
+		"path": "mongodb://localhost/test"
+	},
+
+	"email": {
+		"host": "smtp.google.com",
+		"username": "christopher.esplin@gmail.com",
+		"password": "ethzdzjvatzdiyzp",
+		"from": "christopher.esplin@gmail.com",
+		"confirmation": {
+			"subject": "Quiver Registration Confirmation",
+			"text": "Confirm your registration with Quiver."
+		}
+	},
+
+	"routing": {
+		"whitelist": [
+			"/",
+			"/favicon.ico",
+			"/notifications",
+			"/api/user/login",
+			"/api/user/create",
+			"/api/user/confirm"
+		],
+		"redirects": {
+			"login": "/#/login",
+			"registration": "/#/register"
+		}
+	}
+}

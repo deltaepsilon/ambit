@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="assets/styles/style.css">
 </head>
 <body>
+
     <nav id="top-nav">
         <ul id="top-nav-list" class="horizontal-list">
             <li>
@@ -30,6 +31,9 @@
         </ul>
     </nav>
 
+    <div id="notifications" ng-controller="notificationController" ng-class="type" ng-init="getNotifications()">
+        {{notification}}
+    </div>
     <div ng-view></div>
 
 

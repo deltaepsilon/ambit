@@ -34,17 +34,25 @@
 		"plates" : "*",
 		"director" : "*",
 		"st" :  "*",
+		"coffee-script" : "*",
+		"requirejs" : "*",
+		"amdefine" : "*",
+		"revalidator" : "*",
+		"resourceful" : "*",
+		"mongoose" : "*",
+		"node-guid" : "*",
+		"nodemailer" : "*",
+		"connect" : "*"
+	},
+	"devDependencies": {
+		"mocha"    :  "*",
+		"assert" : "*",
+		"testacular" : "*",
+		"nodemon" : "*",
 		"grunt" : "*",
 		"grunt-contrib-less" : "*",
 		"grunt-coffee" : "*",
-		"nodemon" : "*",
-		"coffee-script" : "*",
-		"requirejs" : "*"
-	},
-	"devDependencies": {
-		"vows"    :  "0.5.x",
-		"request" :  "2.1.x",
-		"testacular" : "*"
+		"grunt-mocha-test" : "*"
 	},
 	"license": "MIT",
 	"engines": {

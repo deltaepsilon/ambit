@@ -14,4 +14,3 @@ angular.module('Ambit').controller 'userController', ($scope, $http) ->
       $scope.notification = data.message
       $scope.error = true
     )
-

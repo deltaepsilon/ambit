@@ -2,8 +2,10 @@
 .DS_Store
 node_modules
 *.css
-assets/scripts/js/directives/*
-assets/scripts/js/filters/*
-assets/scripts/js/services/*
-assets/scripts/js/shared/*
+assets/scripts/js/directives
+assets/scripts/js/filters
+assets/scripts/js/services
+assets/scripts/js/controllers
+assets/scripts/js/modules
 assets/scripts/js/*.js
+test/js

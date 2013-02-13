@@ -1,0 +1,8 @@
+{
+	"user": {
+        "base": "/api/user",
+        "create": "/create",
+		"confirm": "/confirm",
+		"login": "/login"
+    }
+}

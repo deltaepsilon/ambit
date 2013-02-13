@@ -2,14 +2,18 @@
     <ul class="form-list centered">
         <li>
             <label for="email">Email</label>
-            <input class="right-aligned-input" type="email" id="email" placeholder="email" ng-model="user.email"/>
+            <input class="right-aligned-input" type="email" id="email" placeholder="email" ng-model="user.email" required/>
         </li>
         <li>
             <label for="password">Password</label>
-            <input class="right-aligned-input" type="password" id="password" placeholder="password" ng-model="user.password"/>
+            <input class="right-aligned-input" type="password" id="password" placeholder="password" ng-model="user.password" required/>
         </li>
         <li class="button-item buttons-right">
             <button id="register" type="submit" class="inline-button submit bold-button" ng-click="register()">Register</button>
         </li>
     </ul>
+    <div class="notification">{{notification}}</div>
 </form>
+
+
+

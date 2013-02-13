@@ -31,9 +31,17 @@ module.exports = function(grunt) {
                 src: ['assets/scripts/coffee/directives/*.coffee'],
                 dest: 'assets/scripts/js/directives'
             },
-            models: {
-                src: ['assets/scripts/coffee/shared/*.coffee'],
-                dest: 'assets/scripts/js/shared'
+            modules: {
+                src: ['assets/scripts/coffee/modules/*.coffee'],
+                dest: 'assets/scripts/js/modules'
+            },
+            controllers: {
+                src: ['assets/scripts/coffee/controllers/*.coffee'],
+                dest: 'assets/scripts/js/controllers'
+            },
+            test: {
+                src: ['test/coffee/*.coffee'],
+                dest: 'test/js'
             }
         },
         concat: {
@@ -52,6 +60,20 @@ module.exports = function(grunt) {
             directives: {
                 src: ['assets/scripts/js/directives/*.js'],
                 dest: 'assets/scripts/js/directives.js'
+            },
+            app: {
+                src: ['assets/scripts/js/modules/*.js', 'assets/scripts/js/controllers/*.js'],
+                dest: 'assets/scripts/js/app.js'
+            }
+        },
+        mochaTest: {
+          normal: ['test/js/*.js']
+        },
+        mochaTestConfig: {
+            normal: {
+                options: {
+                    ui: 'tdd'
+                }
             }
         },
         watch: {
@@ -64,10 +86,13 @@ module.exports = function(grunt) {
                 tasks:'less concat'
             },
             js: {
-                files: ['assets/scripts/coffee/*'],
+                files: ['assets/scripts/coffee/*', 'assets/scripts/coffee/*/*'],
                 tasks:'coffee concat'
+            },
+            mocha: {
+                files: ['test/coffee/*'],
+                tasks: 'coffee:test mochaTest'
             }
-
         }
     });
 
@@ -79,9 +104,10 @@ module.exports = function(grunt) {
 
 
 
+    grunt.loadNpmTasks('grunt-mocha-test')
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-coffee');
 
 
-    grunt.registerTask('default', ['less', 'coffee', 'concat']);
+    grunt.registerTask('default', ['less', 'coffee', 'concat', 'mochaTest']);
 }
