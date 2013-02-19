@@ -3,6 +3,9 @@
         "base": "/api/user",
         "create": "/create",
 		"confirm": "/confirm",
-		"login": "/login"
+		"login": "/login",
+		"email": {
+			"confirm": "/email/confirm"
+		}
     }
 }

@@ -6,6 +6,11 @@ nodeGuid = require 'node-guid'
 crypto = require 'crypto'
 nodemailer = require 'nodemailer'
 connect = require 'connect'
+plates = require 'plates'
+
+utilities = require '../utilities'
+utilities = new utilities
+  "templateDir": "./lib/modules"
 
 mongoose.connect parameters.mongodb.path
 #mongoose.set 'debug', true
@@ -73,12 +78,23 @@ class UserAPI
           error: error
           result: result
 
-    @router.post @routes.base + @routes.login, () ->
+    @router.post @routes.base + @routes.login, ->
       res = this.res
       that.login this.req, (result, code) ->
         res.writeHead code || 201,
           'Content-Type': 'text/html'
         res.end JSON.stringify result
+
+    @router.get @routes.base + @routes.email.confirm, ->
+      email = this.req.query.email
+      guid = this.req.query.confirmationGuid
+      link = 'http://' + this.req.headers.host + '/api/user/confirm?email=' + email + '&confirmationGuid=' + guid
+      this.res.writeHead 200,
+        'Content-Type': 'text/html'
+      this.res.end that.renderConfirmationEmail email, guid, link
+
+
+
 
   createUser: (req, callback) ->
     that = this
@@ -153,10 +169,19 @@ class UserAPI
       to: email
       subject: parameters.email.confirmation.subject
       text: parameters.email.confirmation.text + ' ' + link
-      html: link
+      html: @renderConfirmationEmail email, guid, link
     if @test
       return callback()
     smtpTransport.sendMail options, callback
+
+  renderConfirmationEmail: (email, guid, link) ->
+    map = plates.Map()
+    map.where('href').is('/').insert 'link'
+    return utilities.renderTemplate 'confirmationEmail',
+      email: email
+      link: link
+      'link-id': link
+#    , map
 
   confirmUser: (email, guid, callback) ->
     @findUserByEmail email, (error, result) ->

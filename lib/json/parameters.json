@@ -21,7 +21,8 @@
 			"/notifications",
 			"/api/user/login",
 			"/api/user/create",
-			"/api/user/confirm"
+			"/api/user/confirm",
+			"/api/user/email/confirm"
 		],
 		"redirects": {
 			"login": "/#/login",
