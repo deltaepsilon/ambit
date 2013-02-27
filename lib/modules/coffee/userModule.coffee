@@ -1,16 +1,16 @@
 revalidator = require 'revalidator'
-resourceful = require 'resourceful'
-parameters = require '../json/parameters'
+parameters = require '../../json/parameters'
 mongoose = require 'mongoose'
 nodeGuid = require 'node-guid'
 crypto = require 'crypto'
 nodemailer = require 'nodemailer'
 connect = require 'connect'
-plates = require 'plates'
+consolidate = require 'consolidate'
+express = require 'express'
 
-utilities = require '../utilities'
+utilities = require '../../js/utilities'
 utilities = new utilities
-  "templateDir": "./lib/modules"
+  "templateDir": "../modules"
 
 mongoose.connect parameters.mongodb.path
 #mongoose.set 'debug', true
@@ -49,25 +49,29 @@ userValidator =
 
 
 class UserAPI
-  constructor: (router, routes, test) ->
-    @router = router
+  constructor: (app, routes, test) ->
+    @app = app
     @routes = routes
     @test = test
     @register()
 
   register: ->
     that = this
-    @router.post @routes.base + @routes.create, () ->
-      res = this.res
-      that.createUser this.req, (result, code) ->
-        res.writeHead code || 201,
-          'Content-Type': 'text/html'
-        res.end JSON.stringify result
-    @router.get @routes.base + @routes.confirm, () ->
-      res = this.res
-      req = this.req
+    @app.use express.bodyParser()
 
-      that.confirmUser this.req.query.email, this.req.query.confirmationGuid, (error, result) ->
+    @app.get @routes.base, (req, res) ->
+      res.writeHead 200,
+        'Content-Type': 'application/json'
+      res.end JSON.stringify that.routes
+
+    @app.post @routes.base + @routes.create, (req, res) ->
+      that.createUser req, (result, code) ->
+        res.writeHead code || 201,
+          'Content-Type': 'application/json'
+        res.end JSON.stringify result
+    @app.get @routes.base + @routes.confirm, (req, res)  ->
+
+      that.confirmUser req.query.email, req.query.confirmationGuid, (error, result) ->
         res.writeHead 302,
           'Content-Type': 'text/html'
           'Location': parameters.routing.redirects.login
@@ -78,21 +82,51 @@ class UserAPI
           error: error
           result: result
 
-    @router.post @routes.base + @routes.login, ->
-      res = this.res
-      that.login this.req, (result, code) ->
+    @app.post @routes.base + @routes.login, (req, res) ->
+      that.login req, (result, code) ->
         res.writeHead code || 201,
-          'Content-Type': 'text/html'
+          'Content-Type': 'application/json'
         res.end JSON.stringify result
 
-    @router.get @routes.base + @routes.email.confirm, ->
-      email = this.req.query.email
-      guid = this.req.query.confirmationGuid
-      link = 'http://' + this.req.headers.host + '/api/user/confirm?email=' + email + '&confirmationGuid=' + guid
-      this.res.writeHead 200,
+    @app.get @routes.base + @routes.email.confirm, (req, res) ->
+      email = req.query.email
+      guid = req.query.confirmationGuid
+      link = 'http://' + req.headers.host + '/api/user/confirm?email=' + email + '&confirmationGuid=' + guid
+      res.writeHead 200,
         'Content-Type': 'text/html'
-      this.res.end that.renderConfirmationEmail email, guid, link
+      res.end that.renderConfirmationEmail email, guid, link
 
+    @app.get @routes.base + @routes.get, (req, res) ->
+      user = req.session.user
+
+      if user
+        res.writeHead 200,
+          'Content-Type': 'application/json'
+        res.end JSON.stringify user
+      else
+        res.writeHead 401,
+          'Content-Type': 'application/json'
+        res.end JSON.stringify
+          error: "User could not be found in session"
+
+    @app.post @routes.base + @routes.logOut, (req, res) ->
+      req.session.destroy((error) ->
+        if error
+          res.writeHead 401,
+            'Content-Type': 'application/json'
+          res.end JSON.stringify
+            message: 'Log out failed'
+            errors: error
+        else
+          res.writeHead 200,
+            'Content-Type': 'application/json'
+          res.end JSON.stringify
+            message: 'User logged out'
+      )
+
+    @app.post @routes.base + @routes.update, (req, res) ->
+      console.log 'time to write an update method!!!'
+      console.log 'updating', req.body
 
 
 
@@ -130,6 +164,7 @@ class UserAPI
       user.confirmationGuid = nodeGuid.new()
       user.resetGuid = nodeGuid.new()
       user.startDate = new Date()
+      user.type = 'seller'
       user.save (error, user) ->
         if error
           return callback
@@ -175,12 +210,12 @@ class UserAPI
     smtpTransport.sendMail options, callback
 
   renderConfirmationEmail: (email, guid, link) ->
-    map = plates.Map()
-    map.where('href').is('/').insert 'link'
-    return utilities.renderTemplate 'confirmationEmail',
-      email: email
-      link: link
-      'link-id': link
+#    map = plates.Map()
+#    map.where('href').is('/').insert 'link'
+#    return utilities.renderTemplate 'confirmationEmail',
+#      email: email
+#      link: link
+#      'link-id': link
 #    , map
 
   confirmUser: (email, guid, callback) ->
@@ -208,15 +243,13 @@ class UserAPI
         user = result[0]
         hash = that.hashPassword password, user.salt
         if hash == user.password
-          req.session._id = user._id
+          req.session.user = user
           return callback
             user: that.cleanUserForClient user
             redirect: req.session.redirect
       callback
         message: 'User not found'
       , 404
-      return
-    return
 
   cleanUserForClient: (user) ->
     user.password = null
@@ -231,16 +264,8 @@ class UserAPI
         result[0].remove callback
     )
 
-  setUser: (req, res, next) =>
-    _id = req.session._id
-    if _id
-      @findUserByID _id, (error, result) ->
-        req.user = result[0]
-        next()
-    else
-      next()
   redirect: (req, res, next) =>
-    if req.user || ~parameters.routing.whitelist.indexOf req.url
+    if req.session.user || ~parameters.routing.whitelist.indexOf req.url
       next()
       return
     req.session.notification =

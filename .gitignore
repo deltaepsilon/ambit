@@ -8,4 +8,8 @@ assets/scripts/js/services
 assets/scripts/js/controllers
 assets/scripts/js/modules
 assets/scripts/js/*.js
+lib/js
+lib/modules/js
 test/js
+uploads
+dump.rdb

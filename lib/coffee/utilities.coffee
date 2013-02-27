@@ -1,5 +1,5 @@
 fs = require 'fs'
-plates = require 'plates'
+consolidate = require 'consolidate'
 
 class utilities
   constructor: (options) ->
@@ -11,6 +11,6 @@ class utilities
   renderTemplate: (fileName, directive, map) ->
     html = @getTemplate(fileName)
     console.log 'directive', directive
-    return plates.bind html, directive, map
+#    return consolidate.swig.bind html, directive, map
 
 module.exports = utilities

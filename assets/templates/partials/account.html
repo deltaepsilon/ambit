@@ -1,0 +1,47 @@
+<form id="user-edit" ng-controller="userController">
+    <ul class="form-list centered" ng-init="getUser();">
+        <li>
+            <label for="email">Email</label>
+            <input class="right-aligned-input" type="email" id="email" placeholder="email" ng-model="user.email"/>
+        </li>
+        <li>
+            <label for="password">Password</label>
+            <input class="right-aligned-input" type="password" id="password" placeholder="password" ng-model="user.password"/>
+        </li>
+        <li>
+            <label for="first-name">First Name</label>
+            <input class="right-aligned-input" type="text" id="first-name" placeholder="Jill" ng-model="user.firstName"/>
+        </li>
+        <li>
+            <label for="last-name">Last Name</label>
+            <input class="right-aligned-input" type="text" id="last-name" placeholder="Smith" ng-model="user.lastName"/>
+        </li>
+        <li>
+            <label for="address-street">Street Address</label>
+            <input class="right-aligned-input" type="text" id="address-street" placeholder="1234 North 4567 South" ng-model="user.address.street"/>
+        </li>
+        <li>
+            <label for="address-city">City</label>
+            <input class="right-aligned-input" type="text" id="address-city" placeholder="Phoenix" ng-model="user.address.city"/>
+        </li>
+        <li>
+            <label for="address-state">State</label>
+            <input class="right-aligned-input" type="text" id="address-state" placeholder="AZ" ng-model="user.address.state"/>
+        </li>
+        <li>
+            <label for="address-code">Postal Code</label>
+            <input class="right-aligned-input" type="text" id="address-code" placeholder="85028" ng-model="user.address.code"/>
+        </li>
+        <li>
+            <label for="address-country">Country</label>
+            <input class="right-aligned-input" type="text" id="address-country" placeholder="USA" ng-model="user.address.country"/>
+        </li>
+        <li>
+            <label for="address-instructions">Shipping Instructions</label>
+            <textarea class="right-aligned-input" type="text" id="address-instructions" placeholder="Leave it with the doorman." ng-model="user.address.instructions"></textarea>
+        </li>
+        <li class="button-item buttons-right">
+            <button id="log-in" type="submit" class="inline-button submit bold-button" ng-click="save()">Save Changes</button>
+        </li>
+    </ul>
+</form>

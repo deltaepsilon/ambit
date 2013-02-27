@@ -51,6 +51,7 @@ Addresses are saved to user objects.  Shipping instructions are included in the 
 + lastName: String
 + street: String
 + city: String
++ state: String
 + code: String
 + country: Country
 + instructions: String

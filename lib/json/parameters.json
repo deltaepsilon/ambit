@@ -15,6 +15,7 @@
 	},
 
 	"routing": {
+		"assets": "/assets",
 		"whitelist": [
 			"/",
 			"/favicon.ico",

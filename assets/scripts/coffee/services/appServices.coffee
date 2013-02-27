@@ -1,6 +1,6 @@
-angular.module('Ambit.services', [], ($provide) ->
-  $provide.factory 'apiRoutes', ->
-    #get apiRoutes
-    console.log 'providing api routes'
-    return {}
-)
+angular.module 'Ambit.services', [], ($provide) ->
+  $provide.provider 'apiRoutes', () ->
+    this.$get = () ->
+      result =
+        test: 'me'
+      return result

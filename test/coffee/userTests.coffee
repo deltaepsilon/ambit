@@ -1,12 +1,10 @@
 mocha = require 'mocha'
 assert = require 'assert'
 coffee = require 'coffee-script'
-flatiron = require 'flatiron'
-app = flatiron.app
+express = require 'express'
+app = express()
 apiRoutes = require '../../lib/json/apiRoutes'
-userModule = require '../../lib/modules/userModule'
-
-app.use flatiron.plugins.http
+userModule = require '../../lib/modules/js/userModule'
 
 validUser =
   email: 'chris@christopheresplin.com'
@@ -19,7 +17,7 @@ loginReq =
   session:
     redirect: '/arbitrary/redirect/route'
 
-Users = new userModule(app.router, apiRoutes.user, true)
+Users = new userModule(app, apiRoutes.user, true)
 
 suite('Add users', ->
   validMessage = null

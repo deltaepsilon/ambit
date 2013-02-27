@@ -4,6 +4,9 @@
         "create": "/create",
 		"confirm": "/confirm",
 		"login": "/login",
+		"logOut": "/logout",
+		"get": "/get",
+		"update": "/update",
 		"email": {
 			"confirm": "/email/confirm"
 		}

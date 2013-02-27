@@ -14,8 +14,8 @@
 		"ambit": "./bin/ambit"
 	},
 	"scripts": {
-		"start": "coffee ./lib/ambit.coffee",
-		"dev": "nodemon ./lib/ambit.coffee 3000",
+		"start": "coffee ./lib/coffee/ambit.coffee",
+		"dev": "nodemon ./lib/coffee/ambit.coffee 3000",
 		"test": "vows --spec --isolate",
 		"predeploy": "echo This will be run before deploying the app",
 		"postdeploy": "echo This will be run after deploying the app"
@@ -26,13 +26,11 @@
 		"url": "https://github.com/deltaepsilon/ambit.git"
 	},
 	"keywords": [
-		"flatiron"
+		"express"
 	],
 	"dependencies" : {
-		"flatiron" :  "*",
-		"union" : "*",
-		"plates" : "*",
-		"director" : "*",
+		"express" :  "*",
+		"consolidate" : "*",
 		"st" :  "*",
 		"coffee-script" : "*",
 		"requirejs" : "*",
@@ -42,7 +40,8 @@
 		"mongoose" : "*",
 		"node-guid" : "*",
 		"nodemailer" : "*",
-		"connect" : "*"
+		"connect" : "*",
+		"connect-redis": "*"
 	},
 	"devDependencies": {
 		"mocha"    :  "*",

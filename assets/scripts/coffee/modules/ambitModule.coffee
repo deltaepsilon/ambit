@@ -12,6 +12,8 @@ Ambit = angular.module('Ambit', [
       templateUrl: 'assets/templates/partials/login.html'
     $routeProvider.when '/register',
       templateUrl: 'assets/templates/partials/register.html'
+    $routeProvider.when '/account',
+      templateUrl: 'assets/templates/partials/account.html'
     $routeProvider.otherwise
       redirectTo: '/'
 ])

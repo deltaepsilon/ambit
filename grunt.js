@@ -15,6 +15,14 @@ module.exports = function(grunt) {
             }
         },
         coffee: {
+            node: {
+                src: ['lib/coffee/*.coffee'],
+                dest: 'lib/js'
+            },
+            nodeModules: {
+                src: ['lib/modules/coffee/*.coffee'],
+                dest: 'lib/modules/js'
+            },
             app: {
                 src: ['assets/scripts/coffee/*.coffee'],
                 dest: 'assets/scripts/js'
@@ -81,6 +89,10 @@ module.exports = function(grunt) {
 //                files: ['./lib/*'],
 //                tasks: 'server'
 //            },
+            node: {
+                files: ['lib/coffee/*', 'lib/modules/coffee/*'],
+                tasks: 'coffee:node coffee:nodeModules mochaTest'
+            },
             less: {
                 files: ['assets/styles/less/*'],
                 tasks:'less concat'
@@ -99,7 +111,7 @@ module.exports = function(grunt) {
     grunt.registerTask('server', 'Start Ambit web server', function() {
         var port = 3000;
         grunt.log.writeln('Started web server on port ' + port)
-        require('./lib/ambit.coffee').start(port);
+        require('./lib/js/ambit.js').start(port);
     });
 
 

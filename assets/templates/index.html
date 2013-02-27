@@ -6,9 +6,8 @@
     <link rel="stylesheet" href="assets/styles/style.css">
 </head>
 <body>
-
-    <nav id="top-nav">
-        <ul id="top-nav-list" class="horizontal-list">
+    <nav id="top-nav" ng-controller="userController" ng-init="getUser();">
+        <ul id="logged-out-nav" class="top-nav-list horizontal-list ng-cloak" ng-class="user.type" ng-hide="user.loggedIn">
             <li>
                 <a href="#/login" class="undecorated">Login</a>
             </li>
@@ -26,6 +25,21 @@
             </li>
             <li>
                 <a href="#/contact" class="undecorated">Contact</a>
+            </li>
+            <li class="stretch-list-item"></li>
+        </ul>
+        <ul id="logged-in-nav" class="top-nav-list horizontal-list" ng-class="user.type" ng-show="user.loggedIn">
+            <li>
+                <a href="#/write" class="undecorated">Write</a>
+            </li>
+            <li>
+                <a href="#/read" class="undecorated">Read</a>
+            </li>
+            <li>
+                <a href="#/account" class="undecorated">{{user.email}}</a>
+            </li>
+            <li>
+                <a href="#/" class="undecorated" ng-click="logOut()">Log Out</a>
             </li>
             <li class="stretch-list-item"></li>
         </ul>
