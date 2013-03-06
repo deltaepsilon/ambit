@@ -17,7 +17,7 @@
 		"start": "coffee ./lib/coffee/ambit.coffee",
 		"dev": "nodemon ./lib/coffee/ambit.coffee 3000",
 		"test": "vows --spec --isolate",
-		"predeploy": "echo This will be run before deploying the app",
+		"predeploy": "grunt",
 		"postdeploy": "echo This will be run after deploying the app"
 	},
 	"main": "./lib/ambit",
@@ -26,7 +26,10 @@
 		"url": "https://github.com/deltaepsilon/ambit.git"
 	},
 	"keywords": [
-		"express"
+		"express",
+		"quiver",
+		"cms",
+		"lms"
 	],
 	"dependencies" : {
 		"express" :  "*",
@@ -41,16 +44,16 @@
 		"node-guid" : "*",
 		"nodemailer" : "*",
 		"connect" : "*",
-		"connect-redis": "*"
+		"connect-redis": "*",
+		"grunt" : "*",
+		"grunt-contrib-less" : "*",
+		"grunt-coffee" : "*"
 	},
 	"devDependencies": {
 		"mocha"    :  "*",
 		"assert" : "*",
 		"testacular" : "*",
 		"nodemon" : "*",
-		"grunt" : "*",
-		"grunt-contrib-less" : "*",
-		"grunt-coffee" : "*",
 		"grunt-mocha-test" : "*"
 	},
 	"license": "MIT",
